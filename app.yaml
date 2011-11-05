@@ -1,0 +1,66 @@
+application: collarcmds
+version: 20110116
+runtime: python
+api_version: 1
+
+handlers:
+- url: /admin/.*
+  script: $PYTHON_LIB/google/appengine/ext/admin
+  login: admin
+
+- url: /stats.*
+  script: $PYTHON_LIB/google/appengine/ext/appstats/ui.py
+
+
+- url: /tasks/cleanup
+  script: cleanup.py
+  login: admin
+
+- url: /favicon.ico
+  static_files: static/OpenCollarLogo.ico
+  upload: static/OpenCollarLogo.ico
+
+- url: /lookup/.*
+  script: lookup.py
+
+- url: /relation/.*
+  script: relation.py
+
+- url: /map/.*
+  script: map.py
+  login: required
+
+- url: /owners/.*
+  script: owners.py
+
+- url: /publichttp/.*
+  script: publichttp.py
+
+- url: /remote/.*
+  script: remote.py
+
+- url: /redirect/.*
+  script: redirect.py
+
+- url: /sendim/.*
+  script: sendim.py
+
+- url: /static
+  static_dir: static
+
+- url: /verify/.*
+  script: verify.py
+
+- url: /webinterface/.*
+  script: webinterface.py
+  login: required
+
+- url: /.*
+  script: remote.py
+
+admin_console:
+  pages:
+  - name: Admin Console
+    url: /admin/
+  - name: Stats
+    url: /stats/

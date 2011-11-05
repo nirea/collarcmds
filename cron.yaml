@@ -1,0 +1,5 @@
+cron:
+- description: delete verification tries that are one day old
+  url: /tasks/cleanup
+  schedule: every 60 minutes
+  
